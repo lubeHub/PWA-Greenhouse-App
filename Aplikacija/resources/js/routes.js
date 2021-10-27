@@ -1,5 +1,5 @@
 import VueRouter from "vue-router";
-import Home from "./components/admin/AdminComponent";
+import Home from "./components/Home";
 import Admin from "./components/admin/AdminComponent";
 import ManageUser from "./components/admin/SetupUser";
 import Registration from "./components/auth/Registration";
