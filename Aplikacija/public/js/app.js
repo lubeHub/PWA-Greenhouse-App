@@ -2343,14 +2343,171 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       id: this.$route.params.id,
       user: null,
       podaci: null,
-      loading: false
+      selectedValue: [],
+      loading: false,
+      field1: null,
+      field2: null,
+      field3: null,
+      field4: null,
+      field5: null,
+      field6: null,
+      field7: null,
+      field8: null,
+      measurementArray: []
     };
+  },
+  methods: {
+    setSelectedValue: function setSelectedValue(event) {
+      this.selectedValue.push(event.target.selectedOptions[0].value);
+    },
+    checkIfExist: function checkIfExist(podatak) {
+      return this.selectedValue.includes(podatak);
+    },
+    saveMeasurements: function saveMeasurements() {
+      this.measurementArray = [{
+        field: 1,
+        value: this.field1
+      }, {
+        field: 2,
+        value: this.field2
+      }, {
+        field: 3,
+        value: this.field3
+      }, {
+        field: 4,
+        value: this.field4
+      }, {
+        field: 5,
+        value: this.field5
+      }, {
+        field: 6,
+        value: this.field6
+      }, {
+        field: 7,
+        value: this.field7
+      }, {
+        field: 8,
+        value: this.field8
+      }];
+      axios.post("/api/usermeasurements", {
+        measurementArray: this.measurementArray,
+        userId: this.user.id
+      });
+    }
   },
   created: function created() {
     var _this = this;
@@ -2358,16 +2515,14 @@ __webpack_require__.r(__webpack_exports__);
     this.loading = true;
 
     try {
-      axios.get("/sanctum/csrf-cookie");
-      var pomoc = axios.get("/api/users/".concat(this.id)).then(function (response) {
+      axios.get("/api/users/".concat(this.id)).then(function (response) {
         _this.user = response.data;
         _this.loading = false;
       });
-      var dudo = axios.get("/api/measurements").then(function (response) {
+      axios.get("/api/measurements").then(function (response) {
         _this.podaci = response.data;
         _this.loading = false;
       });
-      console.log(this.podaci);
     } catch (error) {}
   }
 });
@@ -40883,68 +41038,440 @@ var render = function() {
                     _vm._v("Izaberite velicine")
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "card-body" },
-                    _vm._l(_vm.podaci, function(podatak) {
-                      return _c(
-                        "div",
-                        { key: podatak.id, staticClass: "row p-3" },
-                        [
-                          _c("div", { staticClass: "col-md-8" }, [
-                            _c(
-                              "div",
-                              { staticClass: "d-flex align-items-center" },
-                              [
-                                _c("div", [
-                                  _c("h5", [_vm._v(_vm._s(podatak.name))])
-                                ])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", [
+                      _c("label", [_vm._v("Polje 1:")]),
+                      _c(
+                        "select",
+                        {
+                          directives: [
                             {
-                              staticClass: "col-md-4 d-flex flex-row-reverse",
-                              staticStyle: { width: "30px", height: "40px" }
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.field1,
+                              expression: "field1"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.field1 = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.setSelectedValue
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.podaci, function(podatak) {
+                          return _c(
+                            "option",
+                            {
+                              key: podatak.id,
+                              attrs: {
+                                disabled: _vm.checkIfExist(podatak.name)
+                              }
                             },
-                            [_c("img", { attrs: { src: podatak.url } })]
+                            [_vm._v(_vm._s(podatak.name))]
                           )
-                        ]
+                        }),
+                        0
                       )
-                    }),
-                    0
-                  )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("label", [_vm._v("Polje 2:")]),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.field2,
+                              expression: "field2"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.field2 = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.setSelectedValue
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.podaci, function(podatak) {
+                          return _c(
+                            "option",
+                            {
+                              key: podatak.id,
+                              attrs: {
+                                disabled: _vm.checkIfExist(podatak.name)
+                              }
+                            },
+                            [_vm._v(_vm._s(podatak.name))]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("label", [_vm._v("Polje 3:")]),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.field3,
+                              expression: "field3"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.field3 = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.setSelectedValue
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.podaci, function(podatak) {
+                          return _c(
+                            "option",
+                            {
+                              key: podatak.id,
+                              attrs: {
+                                disabled: _vm.checkIfExist(podatak.name)
+                              }
+                            },
+                            [_vm._v(_vm._s(podatak.name))]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("label", [_vm._v("Polje 4:")]),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.field4,
+                              expression: "field4"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.field4 = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.setSelectedValue
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.podaci, function(podatak) {
+                          return _c(
+                            "option",
+                            {
+                              key: podatak.id,
+                              attrs: {
+                                disabled: _vm.checkIfExist(podatak.name)
+                              }
+                            },
+                            [_vm._v(_vm._s(podatak.name))]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("label", [_vm._v("Polje 5:")]),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.field5,
+                              expression: "field5"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.field5 = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.setSelectedValue
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.podaci, function(podatak) {
+                          return _c(
+                            "option",
+                            {
+                              key: podatak.id,
+                              attrs: {
+                                disabled: _vm.checkIfExist(podatak.name)
+                              }
+                            },
+                            [_vm._v(_vm._s(podatak.name))]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("label", [_vm._v("Polje 6:")]),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.field6,
+                              expression: "field6"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.field6 = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.setSelectedValue
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.podaci, function(podatak) {
+                          return _c(
+                            "option",
+                            {
+                              key: podatak.id,
+                              attrs: {
+                                disabled: _vm.checkIfExist(podatak.name)
+                              }
+                            },
+                            [_vm._v(_vm._s(podatak.name))]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("label", [_vm._v("Polje 7:")]),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.field7,
+                              expression: "field7"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.field7 = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.setSelectedValue
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.podaci, function(podatak) {
+                          return _c(
+                            "option",
+                            {
+                              key: podatak.id,
+                              attrs: {
+                                disabled: _vm.checkIfExist(podatak.name)
+                              }
+                            },
+                            [
+                              _vm._v(_vm._s(podatak.name)),
+                              _c("img", { attrs: { src: podatak.url } })
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("label", [_vm._v("Polje 8:")]),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.field8,
+                              expression: "field8"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.field8 = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.setSelectedValue
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.podaci, function(podatak) {
+                          return _c(
+                            "option",
+                            {
+                              key: podatak.id,
+                              attrs: {
+                                disabled: _vm.checkIfExist(podatak.name)
+                              }
+                            },
+                            [_vm._v(_vm._s(podatak.name))]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-outline-info",
+                        on: {
+                          click: function($event) {
+                            return _vm.saveMeasurements()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Sacuvaj podesavanja\n                            "
+                        )
+                      ]
+                    )
+                  ])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "align-self-end d-flex flex-row-reverse p-2" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "link",
-                    attrs: {
-                      to: {
-                        name: "admin"
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "align-self-end d-flex flex-row-reverse p-2" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "link",
+                      attrs: {
+                        to: {
+                          name: "admin"
+                        }
                       }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-outline-info" }, [
-                      _vm._v(
-                        "\n                               Vrati se nazad\n                           "
-                      )
-                    ])
-                  ]
-                )
-              ],
-              1
-            )
+                    },
+                    [
+                      _c("button", { staticClass: "btn btn-outline-info" }, [
+                        _vm._v(
+                          "\n                            Vrati se nazad\n                        "
+                        )
+                      ])
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
           ])
         : _c("div", [_vm._v("Podaci se ucitavaju..")])
     ])
