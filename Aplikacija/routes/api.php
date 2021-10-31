@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::apiResource('users', 'Api\UserController')->only(['index', 'show']);
 Route::apiResource('measurements', 'Api\MeasurementsController')->only(['index', 'show']);
 Route::get('mqtt', 'Api\MttqController@kreirajMqtt');

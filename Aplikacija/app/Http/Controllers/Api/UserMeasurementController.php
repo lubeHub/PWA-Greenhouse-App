@@ -13,7 +13,7 @@ class UserMeasurementController extends Controller
         $userId = $request->input('userId');
         $measurementArray = $this->arrayValidation($request->input('measurementArray'));
 
-        
+
         $this->arrayValidation($measurementArray);
 
 
@@ -24,7 +24,7 @@ class UserMeasurementController extends Controller
 
 
             DB::insert('INSERT INTO `user_measurements` (`user_id`, `measurements_id`,`fieldId`) VALUES ( ?, ?,?)', [$userId, $this->convertNameToId($measurement["value"]), $measurement["field"]]);
-       }
+        }
     }
 
     private function  deleteMeasurementsFromUser($userId)
@@ -40,7 +40,6 @@ class UserMeasurementController extends Controller
     private function arrayValidation($measurementArray)
     {
 
-     return   array_filter($measurementArray, fn ($arr) => !is_null($arr['value']));
-     
+        return   array_filter($measurementArray, fn ($arr) => !is_null($arr['value']));
     }
 }

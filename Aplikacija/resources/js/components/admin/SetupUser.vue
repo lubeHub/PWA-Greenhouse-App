@@ -192,19 +192,12 @@ export default {
         saveMeasurements() {
             this.measurementArray = [
                 { field: 1, value: this.field1 },
-
                 { field: 2, value: this.field2 },
-
                 { field: 3, value: this.field3 },
-
                 { field: 4, value: this.field4 },
-
                 { field: 5, value: this.field5 },
-
                 { field: 6, value: this.field6 },
-
                 { field: 7, value: this.field7 },
-
                 { field: 8, value: this.field8 }
             ];
             axios.post("/api/usermeasurements", {
@@ -215,7 +208,6 @@ export default {
     },
     created() {
         this.loading = true;
-
         try {
             axios.get(`/api/users/${this.id}`).then(response => {
                 this.user = response.data;
