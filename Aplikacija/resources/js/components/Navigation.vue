@@ -2,8 +2,27 @@
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Diplomski rad</a> 
+                  <router-link
+                                    class="nav-link "
+                                    :to="{ name: 'home' }"
+                                    ><a class="navbar-brand" href="#">Diplomski rad</a> </router-link
+                                >
+                
                         <ul class="navbar-nav">
+                             <li class="nav-item" v-if="isLoggedIn">
+                                <router-link
+                                    class="nav-link "
+                                    :to="{ name: 'main' }"
+                                    >Korisnicka mjerenja</router-link
+                                >
+                            </li>
+                           <li class="nav-item" v-if="isLoggedIn && user.role=='1'">
+                                <router-link
+                                    class="nav-link "
+                                    :to="{ name: 'admin' }"
+                                    >Admin panel</router-link
+                                >
+                            </li>
                             <li class="nav-item" v-if="!isLoggedIn">
                                 <router-link
                                     class="nav-link "

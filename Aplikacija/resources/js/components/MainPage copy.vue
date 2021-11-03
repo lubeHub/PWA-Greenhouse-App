@@ -2,8 +2,8 @@
     <div class="container ">
         <div class="card-header">Kontrola korisnika</div>
         <div class="card ">
-            <div class="card-body" v-if="!loading">
-                <div class="row p-3" v-for="user in users" :key="user.id">
+            <div class="card-body" >
+                <div class="row p-3" v-for="measurement in userMeasurements" :key="measurement.id">
                     <div class="col-md-8">
                       <h5>{{ user.first_name }} {{ user.last_name }}</h5>  
                     </div>
@@ -24,26 +24,43 @@
                     </div>
                 </div>
             </div>
-            <div v-else>Podaci se ucitavaju..</div>
+            
+            <button class="btn btn-outline-info" @click="doSth"></button>
         </div>
     </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
     data() {
         return {
-            users: null,
+            userMeasurements: null,
             loading: false
         };
     },
-    created() {
+    computed: {
+        ...mapState({
+            user: "user",
+        }),
+
+
+    },
+methods:{
+    doSth() {
+      
         this.loading = true;
+        console.log(this.user.id);
         try {
-             axios.get("/api/users").then(response => {
-                this.users = response.data;
-                this.loading = false;
+            console.log(this.user.id);
+              axios.post("/api/getusermeasurements", {
+                userId: this.user.id
             });
-        } catch (error) {}
-    }
-};
+            console.log("RADI");
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+}}
 </script>

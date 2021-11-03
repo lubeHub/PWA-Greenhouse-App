@@ -6,6 +6,8 @@ import Registration from "./components/auth/Registration";
 import Reset from "./components/auth/PasswordReset";
 import Login from "./components/auth/Login";
 import Forgot from "./components/auth/ForgotPassword";
+import Main from "./components/MainPage";
+import Bojic from "./components/novakomponenta";
 const routes = [
     {
         path: "/",
@@ -42,6 +44,16 @@ const routes = [
         path: "/admin",
         name: "admin",
         component: Admin
+    },
+    {
+        path: "/main",
+        name: "main",
+        component: Main
+    },
+    {
+        path: "/nova",
+        name: "nova",
+        component: Bojic
     }
 ];
 

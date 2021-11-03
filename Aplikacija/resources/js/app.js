@@ -28,6 +28,17 @@ window.Vue = require("vue");
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
+const prod = process.env.NODE_ENV === "production";
+const shouldSWDev = "serviceWorker" in navigator && !prod;
+const shouldSW = "serviceWorker" in navigator;
+
+if (shouldSW ) {
+    navigator.serviceWorker.register("./service-worker-dev.js").then(() => {
+        console.log("Service Worker Registered dev!");
+    });
+
+ }
+
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
