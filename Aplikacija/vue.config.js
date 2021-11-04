@@ -5,5 +5,8 @@ module.exports = {
 
     configureWebpack: {
         plugins: [new GenerateSW()]
+    },
+    devServer: {
+        proxy: 'https://api.thingspeak.com',
     }
 };

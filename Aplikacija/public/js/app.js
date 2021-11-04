@@ -3346,7 +3346,9 @@ __webpack_require__.r(__webpack_exports__);
     createConnection: function createConnection() {
       var _this = this;
 
-      axios.get('https://api.thingspeak.com/channels.json?api_key=LQEKPIVU3W4ZSH3I/').then(function (response) {
+      axios.get("https://api.thingspeak.com/channels/1500203/fields/2.json?api_key=UYD0NKJ8ZVR8KQPY", {
+        withCredentials: false
+      }).then(function (response) {
         _this.porukica = response.data;
       });
       ;

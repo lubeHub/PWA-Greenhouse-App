@@ -1,29 +1,29 @@
 <template>
     <div>
         <button class="btn" @click="createConnection">Connect to it</button>
-    
+
         {{ porukica }}
     </div>
 </template>
 
 <script>
-
 export default {
     name: "komponenta",
     data() {
         return {
-            porukica:null
+            porukica: null
         };
     },
-   
+
     methods: {
         createConnection() {
-            axios.get('https://api.thingspeak.com/channels.json?api_key=LQEKPIVU3W4ZSH3I/').then(response => {
-                this.porukica = response.data;
-              
-            });;
-        },
-      
+
+            axios.get("https://api.thingspeak.com/channels/1500203/fields/2.json?api_key=UYD0NKJ8ZVR8KQPY", {
+                withCredentials: false,
+            })  .then(response => {
+                    this.porukica = response.data;
+                });;
+        }
     }
 };
 </script>
