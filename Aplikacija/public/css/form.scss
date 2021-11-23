@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Oswald:wght@600&family=Righteous&display=swap");
+
+.input-div {
+    //display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    padding-top: 1.5rem;
+}
+.input-div + .input {
+    margin-top: 1.5rem;
+}
+.input-label {
+    color: #8597a3;
+    position: absolute;
+    font-size: 0.9rem;
+    top: 1.5rem;
+    transition: 0.25s ease;
+    font-weight: bold;
+}
+.input-field {
+    border: 0;
+    z-index: 1;
+    color: white;
+    background-color: transparent;
+    border-bottom: 2px solid white;
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.25rem 0;
+}
+
+.input-field:focus + .input-label,
+.input-field:valid + .input-label {
+    color: #1d90f4;
+    transform: translateY(-1.5rem);
+}
+
+$base-font-weight: 300;
+$base-font-size: 1rem;
+$base-line-height: 1.5;
+
+.align {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+    &__item {
+        &--start {
+            align-self: flex-start;
+        }
+
+        &--end {
+            align-self: flex-end;
+        }
+    }
+}
+.site {
+    &__logo {
+        margin-bottom: 2rem;
+    }
+}
+
+$grid-max-width: 25rem;
+$grid-width: 100%;
+
+.grid {
+    margin: 0 auto;
+    max-width: $grid-max-width;
+    width: $grid-width;
+}
+
+
+a {
+    color: #1d90f4;
+}
+.register {
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    box-shadow: 0 0 250px #000;
+}
+.align__item > .background_image {
+    background-image: linear-gradient(
+            to bottom right,
+            rgba(40, 42, 55, 1),
+            rgba(40, 42, 55, 1),
+            rgba(40, 42, 55, 0.97),
+            rgba(40, 42, 55, 0.93),
+            rgba(40, 42, 55, 0.9),
+            rgba(40, 42, 55, 0.9),
+            rgba(40, 42, 55, 0.8)
+        ),
+        url('./../images/wallpaper.jpg');
+    background-size: cover;
+}
+.dot {
+    font-size: 40px;
+    color: #1d90f4;
+}
+
+.btn {
+    background-color: #035eaf;
+    border: 0;
+    font-weight: bold;
+    color:white;
+}
+.navbar {
+    width: 100%;
+    background-color: #282a37;
+    color: white;
+}
+.nav-link {
+    color: white;
+}
+.navbar-brand {
+    color: white;
+}
+select {
+    background-color: #282a37;
+    color: white;
+    border: 0;
+    font-weight: bold;
+}
+
+.letters {
+    color: white;
+    font-weight: bold;
+}
+.heading {
+    font-size: 30px;
+    font-family: "Righteous", cursive;
+    margin: 0 0 1rem;
+    color: white;
+}
+
+.blue-label{
+    color: #1d90f4;
+}
+.gray-label{
+  color: #8597a3;
+}
+select:disabled{
+    color: #8597a3;
+}

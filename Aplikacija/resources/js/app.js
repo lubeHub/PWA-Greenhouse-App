@@ -33,7 +33,7 @@ const shouldSWDev = "serviceWorker" in navigator && !prod;
 const shouldSW = "serviceWorker" in navigator;
 
 if (shouldSW ) {
-    navigator.serviceWorker.register("./service-worker-dev.js").then(() => {
+    navigator.serviceWorker.register("/service-worker-dev.js").then(() => {
         console.log("Service Worker Registered dev!");
     });
 

@@ -13,7 +13,6 @@ class UserMeasurementController extends Controller
         $userId = $request->input('userId');
         $measurementArray = $this->arrayValidation($request->input('measurementArray'));
 
-
         $this->arrayValidation($measurementArray);
 
 
@@ -29,8 +28,8 @@ class UserMeasurementController extends Controller
     public function getMeasurementsFromUser(Request $request)
     {
         $userId = $request->input('userId');
-        $user = DB::table('user_measurements')->where('user_id',$userId);
-       dd($user);
+        $user = DB::table('user_measurements')->where('user_id', $userId);
+        dd($user);
     }
 
     private function  deleteMeasurementsFromUser($userId)

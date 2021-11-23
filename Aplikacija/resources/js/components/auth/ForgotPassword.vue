@@ -1,27 +1,28 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <div class="card card-default">
-                    <div class="card-header">Resetujte lozinku</div>
-                    <div class="card-body">
+ <body class="align letters">
+        <div class="grid align__item">
+            <div class="background_image">
+                <div class="register">
+                   <h5 class="heading">Resetuj lozinku<span class="dot">.</span></h5> 
                         <form
                             autocomplete="off"
                             @submit.prevent="requestResetPassword"
                             method="post"
                         >
-                            <div class="form-group">
-                                <label for="email">E-mail</label>
+                         <div class="input-div form-group">
+                              
                                 <input
-                                    type="email"
+                                    type="text"
                                     id="email"
-                                    class="form-control"
-                                    placeholder="Unesite vasu email adresu"
+                                    class="input-field form-control"
+                                     autocomplete="off"
+                                    required
                                     v-model="email"
                                     :class="[
                                         { 'is-invalid': errorFor('email') }
                                     ]"
                                 />
+                                  <label for="email" class="input-label">E-mail</label>
                                 <v-errors
                                     :errors="errorFor('email')"
                                 ></v-errors>
@@ -31,15 +32,14 @@
                                 >
                             </div>
 
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">
                                 Resetuj lozinku
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+    </body>
 </template>
 <script>
 import validationErrors from "../mixins/validationErrors";

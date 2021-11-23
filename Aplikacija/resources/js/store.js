@@ -33,5 +33,6 @@ export default {
             commit("setLoggedIn", false);
             logOut();
         }
-    }
+    },
+
 };

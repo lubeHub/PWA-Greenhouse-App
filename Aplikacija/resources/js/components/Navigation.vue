@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navigacija letters">
+        <nav class=" navbar navbar-expand-lg">
             <div class="container-fluid">
                   <router-link
-                                    class="nav-link "
+                                    class="nav-link"
                                     :to="{ name: 'home' }"
-                                    ><a class="navbar-brand" href="#">Diplomski rad</a> </router-link
+                                    ><a class="navbar-brand" href="#">Diplomski rad<span class="dot" style="font-size:20px">.</span></a> </router-link
                                 >
                 
                         <ul class="navbar-nav">
@@ -34,11 +34,11 @@
                                 <router-link
                                     class="nav-link "
                                     :to="{ name: 'login' }"
-                                    >Uloguj se</router-link
+                                    >Prijavi se</router-link
                                 >
                             </li>
                             <li class="nav-item" v-if="isLoggedIn">
-                                <a class="nav-link" href="#">Zdravo, {{user.first_name}}</a>             
+                                <a class="nav-link" href="#">Zdravo, <span class="blue-label">{{user.first_name}}</span></a>             
                             </li> <li class="nav-item" v-if="isLoggedIn">
                                 <a class="nav-link" href="#" @click.prevent="logout">Odjavi se</a>
                             </li>
@@ -71,6 +71,7 @@ export default {
                 
                 axios.post("/logout");
                this.$store.dispatch("logout");
+               this.$router.push({ name: 'home' });
             } catch (error) {
                  this.$store.dispatch("logout");
             }
