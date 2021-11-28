@@ -38,37 +38,6 @@ $base-font-weight: 300;
 $base-font-size: 1rem;
 $base-line-height: 1.5;
 
-.align {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-
-    &__item {
-        &--start {
-            align-self: flex-start;
-        }
-
-        &--end {
-            align-self: flex-end;
-        }
-    }
-}
-.site {
-    &__logo {
-        margin-bottom: 2rem;
-    }
-}
-
-$grid-max-width: 25rem;
-$grid-width: 100%;
-
-.grid {
-    margin: 0 auto;
-    max-width: $grid-max-width;
-    width: $grid-width;
-}
-
-
 a {
     color: #1d90f4;
 }
@@ -77,20 +46,7 @@ a {
     padding: 4rem 2rem;
     box-shadow: 0 0 250px #000;
 }
-.align__item > .background_image {
-    background-image: linear-gradient(
-            to bottom right,
-            rgba(40, 42, 55, 1),
-            rgba(40, 42, 55, 1),
-            rgba(40, 42, 55, 0.97),
-            rgba(40, 42, 55, 0.93),
-            rgba(40, 42, 55, 0.9),
-            rgba(40, 42, 55, 0.9),
-            rgba(40, 42, 55, 0.8)
-        ),
-        url('./../images/wallpaper.jpg');
-    background-size: cover;
-}
+
 .dot {
     font-size: 40px;
     color: #1d90f4;
@@ -101,6 +57,7 @@ a {
     border: 0;
     font-weight: bold;
     color:white;
+      border-radius: 106px;
 }
 .navbar {
     width: 100%;
@@ -139,4 +96,76 @@ select {
 }
 select:disabled{
     color: #8597a3;
+}
+
+.mreza {
+  margin: 0 auto;
+
+   width: 70%;
+   height: 100%;
+ 
+}
+.poravnanje {
+   align-items: center;
+ //  display: flex;
+   flex-direction: row;
+
+}
+.background_image {
+    background-image: linear-gradient(
+            85deg,
+            rgba(40, 42, 55, 1),
+            rgba(40, 42, 55, 1),
+              rgba(40, 42, 55, 1),
+
+            rgba(40, 42, 55, 0.97),
+            rgba(40, 42, 55, 0.93),
+            rgba(40, 42, 55, 0.9),
+            rgba(40, 42, 55, 0.9),
+            rgba(40, 42, 55, 0.8)
+        ),
+        url("./../images/wallpaper.jpg");
+    background-size: cover;
+}
+.form-control:focus{
+    background-color: transparent;
+    color:white;
+  outline: 0;
+  box-shadow: none;
+  border-color: #1d90f4;
+}
+form{
+    width:75%;
+}
+@media screen and (min-width: 800px) {
+  .mreza{
+    width: 50%; 
+  }
+  
+}
+@media screen and (max-width: 450px) {
+  .mreza{
+    width: 100%; 
+  }
+
+}
+
+
+body{
+    background-color: #282a37;
+    min-height: 100%;
+}
+.box{
+   
+    position:relative;
+}
+.half_border{
+   
+    position: absolute;
+        right: 40%;
+        left: 0;
+         border-bottom: 1.5px solid #1d90f4;
+}
+html {
+    height: 100%;
 }

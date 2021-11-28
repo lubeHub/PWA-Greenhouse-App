@@ -18,4 +18,4 @@ Route::apiResource('users', 'Api\UserController')->only(['index', 'show']);
 Route::apiResource('measurements', 'Api\MeasurementsController')->only(['index', 'show']);
 Route::get('mqtt', 'Api\MttqController@kreirajMqtt');
 Route::post('usermeasurements', 'Api\UserMeasurementController@addMeasurementsToUser');
-Route::post('getusermeasurements', 'Api\UserMeasurementController@getMeasurementsFromUser');
+Route::post('getusermeasurements/{id}', 'Api\UserMeasurementController@getMeasurementsFromUser');

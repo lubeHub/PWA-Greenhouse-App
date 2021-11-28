@@ -1,9 +1,12 @@
 <template>
- <body class="align letters">
-        <div class="grid align__item">
+ 
+        <div class="mreza poravnanje">
             <div class="background_image">
                 <div class="register">
-                   <h5 class="heading">Resetuj lozinku<span class="dot">.</span></h5> 
+                     <div class="box"> <h5 class="heading">
+                                Resetuj lozinku<span class="dot">.</span>
+                                <div class="half_border"></div>
+                            </h5></div>
                         <form
                             autocomplete="off"
                             @submit.prevent="requestResetPassword"
@@ -39,7 +42,6 @@
                     </div>
                 </div>
             </div>
-    </body>
 </template>
 <script>
 import validationErrors from "../mixins/validationErrors";
@@ -73,3 +75,8 @@ export default {
     }
 };
 </script>
+<style scoped>
+.half_border{
+    right:60%;
+}
+</style>

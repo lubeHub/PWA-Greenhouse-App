@@ -25,11 +25,16 @@ class UserMeasurementController extends Controller
             DB::insert('INSERT INTO `user_measurements` (`user_id`, `measurements_id`,`fieldId`) VALUES ( ?, ?,?)', [$userId, $this->convertNameToId($measurement["value"]), $measurement["field"]]);
         }
     }
-    public function getMeasurementsFromUser(Request $request)
+    public function getMeasurementsFromUser($id)
     {
-        $userId = $request->input('userId');
-        $user = DB::table('user_measurements')->where('user_id', $userId);
-        dd($user);
+       
+       
+        $measurements = DB::table('user_measurements')->select('user_id', 'measurements_id', 'fieldId', 'measurements.name', 'measurements.unit', 'measurements.url')
+            ->leftJoin('measurements', 'user_measurements.measurements_id', '=', 'measurements.id')
+         ->where('user_measurements.user_id', '=', $id)
+         ->orderBy('fieldId')->get();
+            
+       return $measurements;
     }
 
     private function  deleteMeasurementsFromUser($userId)

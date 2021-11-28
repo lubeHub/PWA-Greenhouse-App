@@ -1,18 +1,23 @@
 <template>
-    <body class="align letters">
-        <div class="grid align__item">
+   
+        <div class="mreza poravnanje">
             <div class="background_image">
                 <div class="register">
+                     <div v-if="!loading">
                     <div v-if="isLoggedIn && user.role == '1'">
-                        <div v-if="!loading">
-                            <h5 class="heading">
+                       
+                            <div class="box"> <h5 class="heading">
                                 Podešavanje korisnika<span class="dot">.</span>
-                            </h5>
+                                <div class="half_border"></div>
+                            </h5></div>
+                          
+                             
                             <div
                                 class="row p-3"
                                 v-for="user in users"
                                 :key="user.id"
                             >
+                
                                 <div class="ime col-md-8">
                                     {{ user.first_name }} {{ user.last_name }}
                                 </div>
@@ -33,13 +38,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-else><data-loading></data-loading></div>
+                      <div v-else><no-access-page></no-access-page></div>
                     </div>
-                    <div v-else><no-access-page></no-access-page></div>
+                      <div v-else><data-loading></data-loading></div>
+                    
                 </div>
             </div>
         </div>
-    </body>
 </template>
 <script>
 import DataLoading from "../DataLoading.vue";
@@ -75,33 +80,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-body {
-    font-size: large;
-}
+
 .btn {
-    width: 100px;
-    height: 50px;
+    width:100px;
+    height:45px;
     color: white;
+    border-radius: 106px;
 }
 .ime {
     padding-top: 3.5%;
+    font-size:1rem;
 }
 
-$base-bgcolor: #282a37;
-$base-color: #7e8ba3;
-
-body {
-    background-color: $base-bgcolor;
-    margin: 0;
-    min-height: 100%;
-}
-
-$grid-max-width: 25rem;
-$grid-width: 100%;
-
-.grid {
-    margin: 0 auto;
-    max-width: $grid-max-width;
-    width: $grid-width;
-}
 </style>

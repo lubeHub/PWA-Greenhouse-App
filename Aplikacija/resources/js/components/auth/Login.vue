@@ -1,11 +1,11 @@
 <template>
-<body class="letters">
-    <div class="align">
-        <div class="grid align__item">
-             <div class="background_image">
+    <div class="mreza poravnanje">
+        <div class="background_image">
             <div class="register">
-
-                <h5 class="heading">Prijavi se<span class="dot">.</span></h5> 
+                  <div class="box"> <h5 class="heading">
+                               Prijavi se<span class="dot">.</span>
+                                <div class="half_border"></div>
+                            </h5></div>
                 <form>
                     <div class="form-group input-div ">
                         <input
@@ -65,10 +65,8 @@
                     </div>
                 </form>
             </div>
-            </div>
         </div>
     </div>
-    </body>
 </template>
 
 <script>
@@ -106,22 +104,8 @@ export default {
     }
 };
 </script>
-<style lang="scss">
-$base-bgcolor: #282a37;
-$base-color: #7e8ba3;
-
-body {
-    background-color: $base-bgcolor;
-    margin: 0;
-    min-height: 100%;
-}
-
-$grid-max-width: 25rem;
-$grid-width: 100%;
-
-.grid {
-    margin: 0 auto;
-    max-width: $grid-max-width;
-    width: $grid-width;
-}
+<style  scoped>
+    .half_border{
+        right:70%;
+    }
 </style>

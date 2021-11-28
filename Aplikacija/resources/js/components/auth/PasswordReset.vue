@@ -1,80 +1,78 @@
 <template>
-    <body class="align letters">
-        <div class="grid align__item">
-            <div class="background_image">
-                <div class="register">
-                    <form>
-                        <h5 class="heading">Promijeni lozinku<span class="dot">.</span></h5>
-                        <div class="form-group input-div">
-                         
-                            <input
-                                type="text"
-                                id="email"
-                                class="form-control input-field"
-                                autocomplete="off"
-                                required
-                                v-model="email"
-                                :class="[{ 'is-invalid': errorFor('email') }]"
-                            />
-                               <label for="email" class="input-label">E-mail</label>
-                            <v-errors :errors="errorFor('email')"></v-errors>
-                        </div>
+    <div class="mreza poravnanje">
+        <div class="background_image">
+            <div class="register">
+                <form>
+                    <div class="box"> <h5 class="heading">
+                                Promijeni lozinku<span class="dot">.</span>
+                                <div class="half_border"></div>
+                            </h5></div>
+                    <div class="form-group input-div">
+                        <input
+                            type="text"
+                            id="email"
+                            class="form-control input-field"
+                            autocomplete="off"
+                            required
+                            v-model="email"
+                            :class="[{ 'is-invalid': errorFor('email') }]"
+                        />
+                        <label for="email" class="input-label">E-mail</label>
+                        <v-errors :errors="errorFor('email')"></v-errors>
+                    </div>
 
-                        <div class="form-group input-div ">
-                           
-                            <input
-                                type="password"
-                                id="password"
-                                class="form-control input-field"
-                                autocomplete="off"
-                                required
-                                v-model="password"
-                                :class="[
-                                    { 'is-invalid': errorFor('password') }
-                                ]"
-                            />
-                             <label for="password" class="input-label">Lozinka</label>
-                            <v-errors :errors="errorFor('password')"></v-errors>
-                        </div>
-
-                        <div class="form-group input-div ">
-                           
-                            <input
-                                type="password"
-                                id="password_confirmation"
-                                class="form-control input-field"
-                                autocomplete="off"
-                                required
-                                v-model="password_confirmation"
-                                :class="[
-                                    {
-                                        'is-invalid': errorFor(
-                                            'password_confirmation'
-                                        )
-                                    }
-                                ]"
-                            />
-                             <label for="password_confirmation" class="input-label"
-                                >Potvrdi lozinku</label
-                            >
-                            <v-errors
-                                :errors="errorFor('password_confirmation')"
-                            ></v-errors>
-                        </div>
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary btn-lg btn-block"
-                            :disabled="loading"
-                            @click.prevent="resetPassword"
+                    <div class="form-group input-div ">
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-control input-field"
+                            autocomplete="off"
+                            required
+                            v-model="password"
+                            :class="[{ 'is-invalid': errorFor('password') }]"
+                        />
+                        <label for="password" class="input-label"
+                            >Lozinka</label
                         >
-                            Promijeni lozinku
-                        </button>
-                    </form>
-                </div>
+                        <v-errors :errors="errorFor('password')"></v-errors>
+                    </div>
+
+                    <div class="form-group input-div ">
+                        <input
+                            type="password"
+                            id="password_confirmation"
+                            class="form-control input-field"
+                            autocomplete="off"
+                            required
+                            v-model="password_confirmation"
+                            :class="[
+                                {
+                                    'is-invalid': errorFor(
+                                        'password_confirmation'
+                                    )
+                                }
+                            ]"
+                        />
+                        <label for="password_confirmation" class="input-label"
+                            >Potvrdi lozinku</label
+                        >
+                        <v-errors
+                            :errors="errorFor('password_confirmation')"
+                        ></v-errors>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-lg btn-block"
+                        :disabled="loading"
+                        @click.prevent="resetPassword"
+                    >
+                        Promijeni lozinku
+                    </button>
+                </form>
             </div>
         </div>
-    </body>
+    </div>
 </template>
 <script>
 import validationErrors from "../mixins/validationErrors";
@@ -121,3 +119,8 @@ export default {
     }
 };
 </script>
+<style scoped>
+.half_border{
+    right:30%;
+}
+</style>

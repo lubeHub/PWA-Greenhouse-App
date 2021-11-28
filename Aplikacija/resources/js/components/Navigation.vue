@@ -47,7 +47,8 @@
                
             </div>
         </nav>
-        <div class="container mt-4 mb-4 pr-4 pl-4">
+        
+        <div class="bazicni-div">
             <router-view></router-view>
         </div>
     </div>
@@ -79,3 +80,11 @@ export default {
     }
 };
 </script>
+<style scoped>
+.bazicni-div{
+    width:100%;
+    height: 100%;
+    margin-top:1.5%;
+    background-color: #282a37;
+}
+</style>

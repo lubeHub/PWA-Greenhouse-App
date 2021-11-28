@@ -5,6 +5,7 @@ import ManageUser from "./components/admin/ManageUser";
 import Registration from "./components/auth/Registration";
 import Reset from "./components/auth/PasswordReset";
 import Login from "./components/auth/Login";
+import Live from "./components/users/LiveMeasurement"
 //import Login from "./components/test";
 import Forgot from "./components/auth/ForgotPassword";
 import Main from "./components/MainPage";
@@ -14,6 +15,12 @@ const routes = [
         path: "/",
         name: "home",
         component: Home
+    },
+    {
+        path: "/live/:id",
+        name: "live",
+        component: Live,
+        props:true
     },
     {
         path: "/auth/login",

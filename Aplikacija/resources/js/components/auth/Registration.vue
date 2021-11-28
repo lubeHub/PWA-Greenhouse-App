@@ -1,11 +1,13 @@
 <template>
-    <body class="align letters">
-        <div class="grid align__item">
+<div class="mreza poravnanje">
             <div class="background_image">
                     <div class="register">
                        
                         <form>
-                             <h5 class="heading">Registruj se<span class="dot">.</span></h5> 
+                               <div class="box"> <h5 class="heading">
+                                Registruj se<span class="dot">.</span>
+                                <div class="half_border"></div>
+                            </h5></div>
                             <div class="input-div form-group">
                                 <input
                                     type="text"
@@ -133,9 +135,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
-       
-    </body>
+           </div>
 </template>
 
 <script>
@@ -178,22 +178,3 @@ export default {
     }
 };
 </script>
-<style lang="scss">
-$base-bgcolor: #282a37;
-$base-color: #7e8ba3;
-
-body {
-    background-color: $base-bgcolor;
-    margin: 0;
-    min-height: 100%;
-}
-
-$grid-max-width: 25rem;
-$grid-width: 100%;
-
-.grid {
-    margin: 0 auto;
-    max-width: $grid-max-width;
-    width: $grid-width;
-}
-</style>

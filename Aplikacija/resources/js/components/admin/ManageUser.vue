@@ -1,18 +1,21 @@
 <template>
-    <body class="align letters">
-        <div class="grid align__item">
+
+        <div class="mreza poravnanje">
             <div class="background_image">
                 <div class="register">
                     <div v-if="!loading">
                         <div v-if="isLoggedIn && loggedUser.role == '1'">
-                            <h5 class="heading">
-                                Odaberi veličine<span class="dot">.</span>
-                            </h5>
-                            <div class="row justify-content-center">
+                             <div class="box"> <h5 class="heading">
+                               Odaberi veličine<span class="dot">.</span>
+                                <div class="half_border"></div>
+                            </h5></div>
+                            <div class="row justify-content-center">    
                                 <div
                                     class="col-md-4"
                                     style="padding-top:1.5rem"
-                                >
+                                ><div >
+                                    <img style="border-radius:50%" :src="baseUrl+this.selectedUser.url">
+                                </div>
                                     <div>
                                         <div class="blue-label">Ime:</div>
                                         {{ this.selectedUser.first_name }}
@@ -23,15 +26,15 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 select-div">
-                                    <div class="input-div">
+                                    
                                         <div
                                             v-for="number in numberOfFields"
                                             :key="number"
-                                        >
+                                        ><div class="input-div">
                                             <div>
                                                 <label class="gray-label"
                                                     >Polje {{ number }}:</label
-                                                ><select
+                                                ><div><select
                                                     v-model="fields[number]"
                                                     @change="
                                                         setSelectedValue(
@@ -53,7 +56,7 @@
                                                             podatak.name
                                                         }}</option
                                                     ></select
-                                                >
+                                                ></div>
                                             </div>
                                              
                                         </div>
@@ -70,7 +73,7 @@
                                 class="row justify-content-center"
                                 style="margin-top:2rem"
                             >
-                                <div class="col-md-6 " style="padding-left:0">
+                                <div class="col-md-6">
                                     <router-link
                                         class="link"
                                         :to="{
@@ -83,8 +86,8 @@
                                 </div>
 
                                 <div
-                                    class="col-md-6 "
-                                    style="padding-left:10%;  padding-right:0"
+                                    class="col-md-6 rightbutton "
+                                    
                                 >
                                     <button
                                         class="btn btn-primary btn-outline-info"
@@ -101,7 +104,6 @@
                 </div>
             </div>
         </div>
-    </body>
 </template>
 <script>
 import DataLoading from "../DataLoading.vue";
@@ -126,7 +128,8 @@ export default {
             measurementArray: [],
             fields: [],
             numberOfFields: 8,
-            valuesChanged:1
+            valuesChanged:1,
+            baseUrl:"http://127.0.0.1:8000/images/avatars/"
         };
     },
     methods: {
@@ -168,6 +171,7 @@ export default {
         try {
             axios.get(`/api/users/${this.id}`).then(response => {
                 this.selectedUser = response.data;
+                console.log(response.data);
                 this.loading = false;
             });
             axios.get("/api/measurements").then(response => {
@@ -179,28 +183,30 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$base-bgcolor: #282a37;
-$base-color: #7e8ba3;
-
-body {
-    background-color: $base-bgcolor;
-    margin: 0;
-    min-height: 100%;
-}
-
-$grid-max-width: 25rem;
-$grid-width: 100%;
-
-.grid {
-    margin: 0 auto;
-    max-width: $grid-max-width;
-    width: $grid-width;
-}
 .btn {
+    margin-top:1.5%;
     height: 40px;
     width: 150px;
 }
 .btn-secondary{
     background-color:#6c757d;
+}
+.half_border{
+    right:60%;
+}
+img{
+    width:125px;
+    height:125px;
+}
+.rightbutton{
+    
+    display:flex;
+    flex-direction: row-reverse;
+}
+@media screen and (max-width: 800px) {
+  .rightbutton{
+      flex-direction: row;
+  }
+  
 }
 </style>
