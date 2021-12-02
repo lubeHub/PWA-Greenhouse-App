@@ -1,5 +1,4 @@
 <template>
- 
         <div class="mreza poravnanje">
             <div class="background_image">
                 <div class="register">

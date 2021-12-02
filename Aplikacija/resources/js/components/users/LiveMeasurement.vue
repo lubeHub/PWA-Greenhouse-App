@@ -1,3 +1,4 @@
+<!-- Parent komponenta za prikaz trenutnih velicina -->
 <template>
     <div class="mreza poravnanje">
         <div class="background_image">
@@ -11,7 +12,7 @@
                             :key="'row' + row"
                         >
                             <div
-                                class="col d-flex align-items-stretch"
+                                class="col d-flex align-items-stretch justify-content-center"
                                 v-for="(measurement,
                                 column) in measurementsInRow(row)"
                                 :key="'row' + row + column"
@@ -22,11 +23,12 @@
                                     :time_date ="dateOfMeasurement()"
                                 ></field-component>
                             </div>
-                            <div
+                            <!-- <div
                                 class="col"
+                                id="placeholder"
                                 v-for="p in placeholdersInRow(row)"
                                 :key="'placeholder' + row + p"
-                            ></div>
+                            ></div> -->
                         </div>
                     </div>
 
@@ -38,14 +40,14 @@
     </div>
 </template>
 <script>
-import DataLoading from "./../DataLoading.vue";
-import NoAccessPage from "./../NoAccessPage.vue";
+import DataLoading from "./../shared/DataLoading.vue";
+import NoAccessPage from "./../shared/NoAccessPage.vue";
 import { mapState } from "vuex";
 import mqtt from "mqtt";
 
 import FieldComponent from "./../users/FieldComponent.vue";
 export default {
-    name: "ManageUser",
+    name: "Live",
     components: { DataLoading, NoAccessPage, FieldComponent },
     computed: {
         ...mapState({
@@ -98,6 +100,12 @@ export default {
     },
 
     methods: {
+        //event koji se poziva prilikom promjene velicine ekrana, brise prazni placeholder div ukoliko je ekran manji od 1500px
+         myEventHandler(e) {
+                if(screen.width<1500)
+                document.getElementById('placeholder').remove();
+            },
+        //measurementsInRow i placeHoldersInRow su funkcije koje postavljaju prazni div kao placeholder da bi tabela bila prikazana poravnato
         measurementsInRow(row) {
             return this.measurements.slice(
                 (row - 1) * this.columns,
@@ -107,7 +115,7 @@ export default {
         placeholdersInRow(row) {
             return this.columns - this.measurementsInRow(row).length;
         },
-
+            //kreira konekciju sa MQTT 
         createConnection() {
             const { host, port, endpoint, ...options } = this.connection;
             const connectUrl = `ws://${host}:${port}${endpoint}`;
@@ -129,7 +137,7 @@ export default {
                 console.log(`Received message ${message} from topic ${topic}`);
             });
         },
-        // 订阅主题
+        // pretplacuje se na MQTT kanal
         doSubscribe() {
             const { topic, qos } = this.subscription;
             this.client.subscribe(topic, { qos }, (error, res) => {
@@ -141,7 +149,7 @@ export default {
                 console.log("Subscribe to topics res", res);
             });
         },
-        // 取消订阅
+        //  skida pretplatu sa MQTT kanala
         doUnSubscribe() {
             const { topic } = this.subscription;
             this.client.unsubscribe(topic, error => {
@@ -150,7 +158,7 @@ export default {
                 }
             });
         },
-        // 断开连接
+        // brise konekciju sa MQTT kanala
         destroyConnection() {
             if (this.client.connected) {
                 try {
@@ -164,7 +172,7 @@ export default {
                 }
             }
         },
-
+        //poziv kontrolera koji vraca sve odabrane mjerne velicine za datog korisnika
         getMeasurementsFromUser() {
             try {
                 axios
@@ -173,14 +181,15 @@ export default {
                         this.measurements = response.data;
                         this.loading = false;
                     });
+                    
             } catch (error) {}
         },
-
+        //vraca trenutne vrijednosti mjerenja, REST API
         getCurrentValue() {
             try {
                 axios
                     .get(
-                        "https://api.thingspeak.com/channels/1500203/feeds.json?api_key=UYD0NKJ8ZVR8KQPY&results=1",
+                        "https://api.thingspeak.com/channels/1500203/feeds.json?api_key=UYD0NKJ8ZVR8KQPY&results=1&round=2",
                         {
                             withCredentials: false
                         }
@@ -192,12 +201,13 @@ export default {
                     });
             } catch (error) {}
         },
-
+        //dekodira mqtt poruku a zatim vraca vrijednost mjerene velicine
         valueOfMeasurement(measurement) {
             if (this.message instanceof Uint8Array) {               
                 return JSON.parse(this.enc.decode(this.message))["field" + measurement.fieldId];
             } else return this.message.feeds[0]["field" + measurement.fieldId];
         },
+         //dekodira mqtt poruku a zatim vraca datum mjerene velicine
         dateOfMeasurement(){
             if (this.message instanceof Uint8Array) {               
                 return JSON.parse(this.enc.decode(this.message))["created_at"];
@@ -210,13 +220,12 @@ export default {
     },
     mounted(){
     this.createConnection();
-        this.doSubscribe();
-        console.log("monuted")
-
+    this.doSubscribe();
     },
     created() {
         this.loading = true;
         this.getMeasurementsFromUser();
+        window.addEventListener("resize", this.myEventHandler);
     },
 
     beforeDestroy() {
@@ -237,7 +246,14 @@ export default {
     width: 100%;
 }
 .background_image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)),
+   background-image: linear-gradient(to bottom right,
+              rgba(40, 42, 55, 1),
+            rgba(40, 42, 55, 0.93),
+            rgba(40, 42, 55, 0.9),
+            rgba(40, 42, 55, 0.9),
+            rgba(40, 42, 55, 0.9),
+            rgba(40, 42, 55, 0.8)
+        ),
         url("http://127.0.0.1:8000/images/wallpaper.jpg");
     background-size: cover;
 }

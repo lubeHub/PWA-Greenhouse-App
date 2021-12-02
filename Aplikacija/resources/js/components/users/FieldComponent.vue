@@ -1,3 +1,5 @@
+   <!-- Child komponenta za prikaz trenutnih velicina -->
+
 <template
     ><div class="field">
         <!-- <div>
@@ -33,10 +35,11 @@ export default {
         };
     },
     methods: {
+        //zaokruzuje broj na 2 decimale
         toDecimal(value) {
             return parseFloat(value).toFixed(2);
         },
-
+        //konvertuje IsoDate u dd/MM format
         isoDateToNormal(time_date) {
            return new Date(time_date).toLocaleDateString("en-GB", {
                 day: "2-digit",
@@ -45,6 +48,7 @@ export default {
             });
             
         },
+        //konvertuje IsoDate u hh:mm format
         isoTimeToNormal(time_date) {
             return new Date(time_date).toLocaleTimeString("en", {
                 timeStyle: "short",
@@ -69,20 +73,18 @@ img {
     width: 300px;
     height: 200px;
     margin-bottom: 5%;
-
     margin-top: 3%;
     font-family: "Rajdhani", sans-serif;
 }
 
 .drop1 {
-    background-color: rgba(21, 37, 50, 0.5);
+    background-color: rgba(46, 93, 131, 0.3);
     width: 300px;
     height: 200px;
     position: absolute;
     display: block;
     margin: 0 auto;
     border-radius: 15px;
-    /* z-index: 2; */
     backdrop-filter: blur(10px);
 }
 .measurement {
@@ -90,7 +92,6 @@ img {
     display: flex;
 }
 #name {
-    /* background-color:gray; */
     font-size: larger;
     margin-bottom: 0;
     border-radius: 10px;
@@ -101,9 +102,7 @@ img {
     text-shadow: 4px 4px 4px #000;
 }
 #info {
-    font-size: small;
-    /* background-color:purple; */
-
+    font-size: 14px;
     border-radius: 10px;
 }
 .description {

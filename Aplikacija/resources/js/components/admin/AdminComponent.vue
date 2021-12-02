@@ -1,5 +1,5 @@
+<!--Admin komponenta koja izlistava sve korisnike iz baze -->
 <template>
-   
         <div class="mreza poravnanje">
             <div class="background_image">
                 <div class="register">
@@ -19,24 +19,24 @@
                             >
                 
                                 <div class="ime col-md-8">
-                                    {{ user.first_name }} {{ user.last_name }}
-                                </div>
-
-                                <div
-                                    class="col-md-4 align-self-end d-flex flex-row-reverse"
-                                >
-                                    <router-link
+                                   <label> {{ user.first_name }} {{ user.last_name }}</label>
+                                        <router-link
                                         class="link"
                                         :to="{
                                             name: 'manage-user',
                                             params: { id: user.id }
                                         }"
+                                        
                                         ><button class="btn" :id="user.id">
                                             Podesi
                                         </button></router-link
                                     >
                                 </div>
-                            </div>
+
+                               
+                                
+                                </div>
+                      
                         </div>
                       <div v-else><no-access-page></no-access-page></div>
                     </div>
@@ -47,9 +47,9 @@
         </div>
 </template>
 <script>
-import DataLoading from "../DataLoading.vue";
+import DataLoading from "./../shared/DataLoading.vue";
 import { mapState } from "vuex";
-import NoAccessPage from "../NoAccessPage.vue";
+import NoAccessPage from "./../shared/NoAccessPage.vue";
 export default {
     name: "Admin",
     computed: {
@@ -91,5 +91,11 @@ export default {
     padding-top: 3.5%;
     font-size:1rem;
 }
-
+button{
+    position:absolute;
+    right:0;
+}
+label{
+    margin-top:2%;
+}
 </style>

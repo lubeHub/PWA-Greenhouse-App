@@ -1,4 +1,5 @@
-<template>
+<!-- Komponenta za prikaz greski prilikom login/register -->
+<template> 
   <div>
     <div class="invalid-feedback" v-for="(error, index) in errors" :key="key(index)">{{ error }}</div>
   </div>

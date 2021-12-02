@@ -9,7 +9,7 @@ import router from "./routes";
 import VueRouter from "vue-router";
 import Vue from "vue";
 import Vuex from 'vuex';
-import ValidationErrors from "./components/ValidationErrors";
+import ValidationErrors from "./components/shared/ValidationErrors";
 import storeDefinition from "./store";
 import Navigation from "./components/Navigation";
 

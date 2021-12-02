@@ -1,20 +1,19 @@
 import VueRouter from "vue-router";
-import Home from "./components/Home";
+import Trend from "./components/users/TrendMeasurement";
 import Admin from "./components/admin/AdminComponent";
 import ManageUser from "./components/admin/ManageUser";
 import Registration from "./components/auth/Registration";
 import Reset from "./components/auth/PasswordReset";
 import Login from "./components/auth/Login";
 import Live from "./components/users/LiveMeasurement"
-//import Login from "./components/test";
 import Forgot from "./components/auth/ForgotPassword";
-import Main from "./components/MainPage";
-import Bojic from "./components/novakomponenta";
 const routes = [
+
     {
-        path: "/",
-        name: "home",
-        component: Home
+        path: "/trend/:id",
+        name: "trend",
+        component: Trend,
+        props:true
     },
     {
         path: "/live/:id",
@@ -53,16 +52,6 @@ const routes = [
         name: "admin",
         component: Admin
     },
-    {
-        path: "/main",
-        name: "main",
-        component: Main
-    },
-    {
-        path: "/nova",
-        name: "nova",
-        component: Bojic
-    }
 ];
 
 

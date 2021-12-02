@@ -10,8 +10,15 @@
     "watch-poll": "mix watch -- --watch-options-poll=1000"
   },
   "dependencies": {
+    "chart.js": "^2.7.1",
     "mqtt": "^4.2.8",
+    "vue-chartjs": "^3.4.0",
     "vue-router": "^3.5.2",
+    "vue-select": "^3.16.0",
+    "vue2-datepicker": "^3.10.3",
+    "vue3-date-time-picker": "^2.3.6",
+    "vue3-datepicker": "^0.2.5",
+    "vuejs-datepicker": "^0.9.9",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
