@@ -22,8 +22,8 @@
                          
                     </button>
                
-                <div class="collapse navbar-collapse" id="navCollapse">
-                    <ul class="nav navbar-nav ">
+                <div class="collapse navbar-collapse letters" id="navCollapse">
+                    <ul class="nav navbar-nav mr-auto ">
                         <li class="nav-item" v-if="isLoggedIn">
                             <router-link
                                 class="nav-link "
@@ -46,11 +46,11 @@
                             <router-link
                                 class="nav-link "
                                 :to="{ name: 'admin' }"
-                                >Admin panel</router-link
+                                >Prikaz korisnika</router-link
                             >
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right ">
+                    <ul class="nav navbar-nav ml-auto letters">
                         <li class="nav-item" v-if="!isLoggedIn">
                             <router-link
                                 class="nav-link "

@@ -29,8 +29,8 @@
                                     :errors="errorFor('email')"
                                 ></v-errors>
                                 <span v-if="mailSent" class="text-success"
-                                    >Email sa upustvom za resetovanje lozinke je
-                                    poslat na vasu adresu.</span
+                                    >Email sa uputstvom za resetovanje lozinke je
+                                    poslat na vašu adresu.</span
                                 >
                             </div>
 

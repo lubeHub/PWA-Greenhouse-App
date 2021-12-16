@@ -23,12 +23,12 @@
                                     :time_date ="dateOfMeasurement()"
                                 ></field-component>
                             </div>
-                            <!-- <div
+                            <div
                                 class="col"
                                 id="placeholder"
                                 v-for="p in placeholdersInRow(row)"
                                 :key="'placeholder' + row + p"
-                            ></div> -->
+                            ></div>
                         </div>
                     </div>
 

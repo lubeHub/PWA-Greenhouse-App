@@ -46,10 +46,11 @@ class MailResetPasswordNotification extends ResetPassword
             ->subject('Resetovanje lozinke')
             ->greeting("Pozdrav")
             ->line(" Primili ste ovaj mejl jer smo dobili zahtjev za resetovanje lozinke naloga koji je povezan sa ovim emailom.")
-            ->action('Reset Password', $link)
-            ->line("Ovaj link ce isteci nakon " . config('auth.passwords.users.expire') . " minuta")
-            ->line("Ukoliko ste ovaj mail dobili greskom, ignorisite ga.")
-            ->salutation("Srdacan pozdrav!");
+            ->action('Resetuj lozinku', $link)
+            ->line("Ovaj link će isteći nakon " . config('auth.passwords.users.expire') . " minuta.")
+            ->line("Ukoliko ste ovaj mail dobili greškom, ignorišite ga.")
+            ->salutation("Srdačan pozdrav!");
+            
     }
 
     /**

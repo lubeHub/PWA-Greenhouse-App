@@ -97549,11 +97549,11 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "collapse navbar-collapse",
+            staticClass: "collapse navbar-collapse letters",
             attrs: { id: "navCollapse" }
           },
           [
-            _c("ul", { staticClass: "nav navbar-nav " }, [
+            _c("ul", { staticClass: "nav navbar-nav mr-auto " }, [
               _vm.isLoggedIn
                 ? _c(
                     "li",
@@ -97605,7 +97605,7 @@ var render = function() {
                           staticClass: "nav-link ",
                           attrs: { to: { name: "admin" } }
                         },
-                        [_vm._v("Admin panel")]
+                        [_vm._v("Prikaz korisnika")]
                       )
                     ],
                     1
@@ -97613,7 +97613,7 @@ var render = function() {
                 : _vm._e()
             ]),
             _vm._v(" "),
-            _c("ul", { staticClass: "nav navbar-nav navbar-right " }, [
+            _c("ul", { staticClass: "nav navbar-nav ml-auto letters" }, [
               !_vm.isLoggedIn
                 ? _c(
                     "li",
@@ -98139,7 +98139,7 @@ var render = function() {
                 _vm.mailSent
                   ? _c("span", { staticClass: "text-success" }, [
                       _vm._v(
-                        "Email sa upustvom za resetovanje lozinke je\n                            poslat na vasu adresu."
+                        "Email sa uputstvom za resetovanje lozinke je\n                            poslat na vašu adresu."
                       )
                     ])
                   : _vm._e()
@@ -99140,39 +99140,49 @@ var render = function() {
                       return _c(
                         "div",
                         { key: "row" + row, staticClass: "row mb-4" },
-                        _vm._l(_vm.measurementsInRow(row), function(
-                          measurement,
-                          column
-                        ) {
-                          return _c(
-                            "div",
-                            {
-                              key: "row" + row + column,
-                              staticClass:
-                                "col d-flex align-items-stretch justify-content-center"
-                            },
-                            [
-                              _c(
-                                "field-component",
-                                _vm._b(
-                                  {
-                                    attrs: {
-                                      value: _vm.valueOfMeasurement(
-                                        measurement
-                                      ),
-                                      time_date: _vm.dateOfMeasurement()
-                                    }
-                                  },
+                        [
+                          _vm._l(_vm.measurementsInRow(row), function(
+                            measurement,
+                            column
+                          ) {
+                            return _c(
+                              "div",
+                              {
+                                key: "row" + row + column,
+                                staticClass:
+                                  "col d-flex align-items-stretch justify-content-center"
+                              },
+                              [
+                                _c(
                                   "field-component",
-                                  measurement,
-                                  false
+                                  _vm._b(
+                                    {
+                                      attrs: {
+                                        value: _vm.valueOfMeasurement(
+                                          measurement
+                                        ),
+                                        time_date: _vm.dateOfMeasurement()
+                                      }
+                                    },
+                                    "field-component",
+                                    measurement,
+                                    false
+                                  )
                                 )
-                              )
-                            ],
-                            1
-                          )
-                        }),
-                        0
+                              ],
+                              1
+                            )
+                          }),
+                          _vm._v(" "),
+                          _vm._l(_vm.placeholdersInRow(row), function(p) {
+                            return _c("div", {
+                              key: "placeholder" + row + p,
+                              staticClass: "col",
+                              attrs: { id: "placeholder" }
+                            })
+                          })
+                        ],
+                        2
                       )
                     }),
                     0
