@@ -42,7 +42,6 @@
                                                 <v-select
                                                     option:deselected="deselectedValue()"
                                                     :options="podaci"
-                                                   
                                                     label="name"
                                                     v-model="fields[number]"
                                                     :selectable="
@@ -142,23 +141,22 @@ export default {
         //metoda koja dodaje odabranu vrijednost selecta u niz selectedValues
         setSelectedValue(event, id) {
             this.valuesChanged = 1;
-           this.selectedValues[id] =( event!=null)?event.name:null;
-
+            this.selectedValues[id] = event != null ? event.name : null;
         },
         //metoda koja provjerava da li je izabrana opcija u nizu selectedValues, odnosno da li je opcija vec izabrana u nekom drugom selectu
         checkIfExist(podatak) {
             return this.selectedValues.includes(podatak);
         },
 
-        // metoda koja vraca odabranog korisnika 
-        getSelectedUser() {
+        // metoda koja vraca odabranog korisnika
+        async getSelectedUser() {
             try {
                 axios.get(`/api/users/${this.id}`).then(response => {
                     this.selectedUser = response.data;
 
                     this.loading = false;
                 });
-                axios.get("/api/measurements").then(response => {
+                await axios.get("/api/measurements").then(response => {
                     this.podaci = response.data;
                     this.loading = false;
                 });
@@ -173,9 +171,9 @@ export default {
                 });
             } catch (error) {}
         },
-            deselectedValue(){
-                console.log("radi");
-            },
+        deselectedValue() {
+            console.log("radi");
+        },
         // metoda koja salje bazi izabrane velicine
         saveMeasurements() {
             //provjera validnosti formata
@@ -208,6 +206,7 @@ export default {
         this.loading = true;
         this.getSelectedUser();
         this.getMeasurements();
+      
     }
 };
 </script>
@@ -232,14 +231,12 @@ img {
     flex-direction: row-reverse;
 }
 
-.vselect
-{
-    width:70%;
+.vselect {
+    width: 70%;
 }
 @media screen and (max-width: 800px) {
     .rightbutton {
         flex-direction: row;
     }
 }
-
 </style>

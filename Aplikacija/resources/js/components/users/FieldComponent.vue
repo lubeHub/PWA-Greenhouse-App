@@ -97,7 +97,7 @@ img {
     border-radius: 10px;
 }
 #value {
-    font-size: 4rem;
+    font-size: 3rem;
     margin-left: 7%;
     text-shadow: 4px 4px 4px #000;
 }
